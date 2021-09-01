@@ -1,8 +1,8 @@
 # -*- coding: utf8 -*-
 # python版本 >=3.8
 """
-建议cron: 40 0,1 * * *  python3 jd_xmyd.py
-new Env('领京豆-早起福利');
+建议cron: 0 7 * * *  python3 jd_xmyd.py
+new Env('小米运动自用');
 """
 
 import requests,time,re,json,random,os
