@@ -5,7 +5,7 @@ const notify = $.isNode() ? require('./sendNotify') : '';
 //Node.js用户请在jdCookie.js处填写京东ck;
 const jdCookieNode = $.isNode() ? require('./jdCookie.js') : '';
 const got = require('got');
-const {getEnvs, DisableCk} = require('./qiyueyirely/ql');
+const {getEnvs, DisableCk} = require('./qiyueyirely/rely_CheckCK');
 const api = got.extend({
   retry: { limit: 0 },
   responseType: 'json',
