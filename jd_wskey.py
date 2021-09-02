@@ -73,11 +73,11 @@ def appjmp(token):
 
 
 if __name__ == '__main__':
-    os.system('chcp 65001')
+    # os.system('chcp 65001')
     print("Ver: 0.1")
     print("limoe")
     # print("请输入格式为pin=xxx;wskey=xxx;")
     # ws = input()
     ws = os.environ["wskey"]
     getToken(ws)
-    os.system('pause')
+    # os.system('pause')
