@@ -1,3 +1,8 @@
+"""
+建议cron: 40 21 * * 1  python3 jd_upck.py
+new Env('CK自动更新');
+"""
+
 # 在这里输入青龙面板用户名密码，如果不填写，就自动从auth.json中读取
 username = ""
 password = ""
