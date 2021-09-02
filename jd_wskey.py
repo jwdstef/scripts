@@ -1,7 +1,7 @@
 
 # 目前仅支持单账号
 # 变量格式为
-# wskey="pin=xxx;wskey=xxx;"
+# JD_WSCK="pin=xxx;wskey=xxx;"
 
 """
 建议cron: 0 0 1 1 *  python3 jd_wskey.py
@@ -78,6 +78,6 @@ if __name__ == '__main__':
     print("limoe")
     # print("请输入格式为pin=xxx;wskey=xxx;")
     # ws = input()
-    ws = os.environ["wskey"]
+    ws = os.environ["JD_WSCK"]
     getToken(ws)
     # os.system('pause')
