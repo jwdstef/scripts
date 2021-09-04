@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*
 '''
 cron: 15 */6 * * * wskey.py
-new Env('wskey转换');
+new Env('wskey转换禁启用ck');
 '''
 
 
