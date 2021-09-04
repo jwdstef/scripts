@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*
 '''
-cron: 15 */6 * * * wskey.py
+cron: 45 * * * * wskey.py
 new Env('wskey转换');
 '''
 import zlib, base64
