@@ -35,3 +35,10 @@ ql repo https://hub.fastgit.org/Tsukasa007/my_script.git "jd_joy|jd_jxzpk" "" ""
 ````
 ql repo https://github.com/Tsukasa007/my_script.git "jd_joy|jd_jxzpk" "" "" "master"
 ````
+# Zy143L
+````
+ql repo https://hub.fastgit.org/Zy143L/wskey.git "wskey"
+````
+````
+ql repo https://github.com/github.com/Zy143L/wskey.git "wskey"
+````
