@@ -1,6 +1,6 @@
 """
 建议cron: 40 21 * * 1  python3 jd_upck.py
-new Env('CK强制更新');
+new Env('CK自动更新');
 """
 
 # 在这里输入青龙面板用户名密码，如果不填写，就自动从auth.json中读取
@@ -59,13 +59,17 @@ def wstopt(cookies):
         'content-type': 'application/x-www-form-urlencoded; charset=UTF-8',
         'Cookie': cookies,
     }
-    url = 'https://api.m.jd.com/client.action?functionId=genToken&clientVersion=10.1.2&build=89743&client=android' \
-          '&d_brand=&d_model=&osVersion=&screen=&partner=&oaid=&openudid=a27b83d3d1dba1cc&eid=&sdkVersion=30&lang' \
-          '=zh_CN&uuid=a27b83d3d1dba1cc&aid=a27b83d3d1dba1cc&area=19_1601_36953_50397&networkType=wifi&wifiBssid=&uts' \
-          '=&uemps=0-2&harmonyOs=0&st=1630413012009&sign=ca712dabc123eadd584ce93f63e00207&sv=121'
-    body = 'body=%7B%22to%22%3A%22https%253a%252f%252fplogin.m.jd.com%252fjd-mlogin%252fstatic%252fhtml' \
-           '%252fappjmp_blank.html%22%7D&'
-    response = requests.post(url, data=body, headers=headers, verify=False)
+    # url = 'https://api.m.jd.com/client.action?functionId=genToken&clientVersion=10.1.2&build=89743&client=android' \
+    #       '&d_brand=&d_model=&osVersion=&screen=&partner=&oaid=&openudid=a27b83d3d1dba1cc&eid=&sdkVersion=30&lang' \
+    #       '=zh_CN&uuid=a27b83d3d1dba1cc&aid=a27b83d3d1dba1cc&area=19_1601_36953_50397&networkType=wifi&wifiBssid=&uts' \
+    #       '=&uemps=0-2&harmonyOs=0&st=1630413012009&sign=ca712dabc123eadd584ce93f63e00207&sv=121'
+    # body = 'body=%7B%22to%22%3A%22https%253a%252f%252fplogin.m.jd.com%252fjd-mlogin%252fstatic%252fhtml' \
+    #        '%252fappjmp_blank.html%22%7D&'
+    params={'functionId':'genToken','clientVersion':'10.1.2','client':'android','uuid':uuid,'st':st,'sign':sign,'sv':sv}
+    url = 'https://api.m.jd.com/client.action'
+    body = 'body=%7B%22action%22%3A%22to%22%2C%22to%22%3A%22https%253A%252F%252Fplogin.m.jd.com%252Fcgi-bin%252Fm%252Fthirdapp_auth_page%253Ftoken%253DAAEAIEijIw6wxF2s3bNKF0bmGsI8xfw6hkQT6Ui2QVP7z1Xg%2526client_type%253Dandroid%2526appid%253D879%2526appup_type%253D1%22%7D&'
+    # response = requests.post(url, data=body, headers=headers, verify=False)
+    response = requests.post(url=url, params=params, data=body, headers=headers, verify=False)
     data = json.loads(response.text)
     if data.get('code') != '0':
         return None
@@ -84,6 +88,15 @@ def wstopt(cookies):
             result += k + "=" + v + "; "
     return result
 
+def get_sign():
+    url="https://hellodns.coding.net/p/sign/d/jsign/git/raw/master/sign"
+    res=requests.get(url=url,verify=False,timeout=20)
+    sign_list=json.loads(res.text)
+    svv=sign_list['sv']
+    stt=sign_list['st']
+    suid=sign_list['uuid']
+    jign=sign_list['sign']
+    return svv,stt,suid,jign
 
 def update(text, qlid):
     url = "http://127.0.0.1:5700/api/envs?t=%s" % gettimestamp()
@@ -126,6 +139,7 @@ if __name__ == '__main__':
     count = 1
     for i in wskeys:
         if i["status"]==0:
+            sv,st,uuid,sign=get_sign() 
             ptck = wstopt(i["value"])
             wspin = re.findall(r"pin=(.*?);", i["value"])[0]
             item = getckitem("pt_pin=" + wspin)
