@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*
 '''
-cron: 15 */16 * * * jd_wskey.py
+cron: 0 0 1 1 * jd_wskey.py
 new Env('wskey转换禁启用ck');
 '''
 import lzma, base64
