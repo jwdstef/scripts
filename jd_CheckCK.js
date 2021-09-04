@@ -3,7 +3,7 @@ cron "30 * * * *" jd_CheckCK.js, tag:京东CK检测by-ccwav
 */
 //Check Ck Tools by ccwav
 //Update : 20210902
-const $ = new Env('京东CK检测');
+const $ = new Env('CK检测禁启用');
 const notify = $.isNode() ? require('./sendNotify') : '';
 //Node.js用户请在jdCookie.js处填写京东ck;
 const jdCookieNode = $.isNode() ? require('./jdCookie.js') : '';
